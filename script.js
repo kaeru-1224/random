@@ -15,6 +15,7 @@ randombtn.addEventListener('click',randomImg)*/
 
 //🤔그러면 어떤식으로하면 하나의 묶음으로해서 랜덤으로 구할수있을까?
 //든생각: 아마도 객체?를 이용해주면,하나의 묶음으로 넣어줄 수있지 않을까?
+//ㅇㅋ 그러니까 이제 랜덤버튼을 누를시에 랜덤이 진행되도록 해주었음!
 const randombtn= document.querySelector(".random")
 const randomPlanet=[
  { id:1,
