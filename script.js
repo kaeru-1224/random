@@ -1,29 +1,14 @@
-//🤔최종목표: 사진-이름- 멘트(?)를 하나의 쌍으로 슬라이드를 만드는것 
-//✨1차 목표: 사진을 우선 랜덤으로 나오게 해주기 
 
-/*const randombtn= document.querySelector(".random");
-console.log(randombtn)
-const img=["01.png","02.png","03.png","04.png"];
-
-const profile= document.querySelector(".profile")
-
-function randomImg (){
-   let newImg= img[Math.floor(Math.random()*img.length)]
-document.querySelector("img").src="img/"+newImg} 
-
-randombtn.addEventListener('click',randomImg)*/
-
-//🤔그러면 어떤식으로하면 하나의 묶음으로해서 랜덤으로 구할수있을까?
-//든생각: 아마도 객체?를 이용해주면,하나의 묶음으로 넣어줄 수있지 않을까?
-//ㅇㅋ 그러니까 이제 랜덤버튼을 누를시에 랜덤이 진행되도록 해주었음!
 const randombtn= document.querySelector(".random")
-const right=document.querySelector(".right")
-const left=document.querySelector(".left")
-
+const leftbtn=document.querySelector("i")
+const rightbtn=document.querySelector(".right>i")
 const mainnImg= document.querySelector("img")
 const nameInfo=document.querySelector(".name")
 const positionInfo=document.querySelector(".position")
 const detailInfo=document.querySelector("span")
+//시작하는 인덱스 지정 
+let currentImg=0;
+
 const randomPlanet=[
  { id:1,
     name:"earth",
@@ -49,32 +34,19 @@ const randomPlanet=[
     detail:"Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the \"Red Planet\".[16][17] The latter refers to the effect of the iron oxide prevalent on Mars's surface, which gives it a reddish appearance distinctive among the astronomical bodies visible to the naked eye.[18] Mars is a terrestrial planet with a thin atmosphere, with surface features reminiscent of the impact craters of the Moon and the valleys, deserts and polar ice caps of Earth."
   }]
 
-window.addEventListener('DOMContentLoaded',()=>{showImg(newImg) })
 
-  let newImg=Math.floor(Math.random()* randomPlanet.length);
-  function randomImg (){
-    let randomIndex=randomPlanet[newImg];
+  function showImg(currentImg){
+    const randomIndex =randomPlanet[currentImg];
     mainnImg.src=randomIndex.img;
     nameInfo.innerText=randomIndex.name;
     positionInfo.innerText=randomIndex.position;
-    detailInfo.innerText=randomIndex.detail;} 
+    detailInfo.innerText=randomIndex.detail;
+  console.log(currentImg)} 
 
 
-
- randombtn.addEventListener('click',randomImg)
+ randombtn.addEventListener('click',()=>{currentImg=Math.floor(Math.random()* randomPlanet.length); showImg(currentImg) })
+ rightbtn.addEventListener('click',()=>{currentImg++; if(currentImg>randomPlanet.length){currentImg=0}showImg(currentImg) })
+ leftbtn.addEventListener('click',()=>{currentImg--; if(currentImg<0){currentImg=0}showImg(currentImg) })
 
  //🤔버튼을 누를때 마다  인덱스값이 증가 감소하도록하게해서 바꿔주도록 진행을 해볼까?
-
-
-function showImg(newImg){
-  const currentItem= randomPlanet[newImg];
-  mainnImg.src=currentItem.img;
-  nameInfo.innerText=currentItem.name;
-  positionInfo.innerText=currentItem.position;
-  detailInfo.innerText=currentItem.detail;
-
-}
-
-
-right.addEventListener('click',()=>{newImg+=1; showImg(newImg)})
-left.addEventListener('click',()=>{newImg-=1; showImg(newImg)})
+//문제? 문제가 아마 내문제겟지? 아마도 
