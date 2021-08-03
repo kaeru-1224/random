@@ -17,6 +17,13 @@ randombtn.addEventListener('click',randomImg)*/
 //든생각: 아마도 객체?를 이용해주면,하나의 묶음으로 넣어줄 수있지 않을까?
 //ㅇㅋ 그러니까 이제 랜덤버튼을 누를시에 랜덤이 진행되도록 해주었음!
 const randombtn= document.querySelector(".random")
+const right=document.querySelector(".right")
+const left=document.querySelector(".left")
+
+const mainnImg= document.querySelector("img")
+const nameInfo=document.querySelector(".name")
+const positionInfo=document.querySelector(".position")
+const detailInfo=document.querySelector("span")
 const randomPlanet=[
  { id:1,
     name:"earth",
@@ -42,19 +49,32 @@ const randomPlanet=[
     detail:"Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the \"Red Planet\".[16][17] The latter refers to the effect of the iron oxide prevalent on Mars's surface, which gives it a reddish appearance distinctive among the astronomical bodies visible to the naked eye.[18] Mars is a terrestrial planet with a thin atmosphere, with surface features reminiscent of the impact craters of the Moon and the valleys, deserts and polar ice caps of Earth."
   }]
 
+window.addEventListener('DOMContentLoaded',()=>{showImg(newImg) })
 
+  let newImg=Math.floor(Math.random()* randomPlanet.length);
   function randomImg (){
-    let newImg= randomPlanet[Math.floor(Math.random()* randomPlanet.length)]
-    document.querySelector("img").src=newImg.img;
-    document.querySelector(".name").innerText=newImg.name;
-    document.querySelector(".position").innerText=newImg.position;
-    document.querySelector("span").innerText=newImg.detail;} 
+    let randomIndex=randomPlanet[newImg];
+    mainnImg.src=randomIndex.img;
+    nameInfo.innerText=randomIndex.name;
+    positionInfo.innerText=randomIndex.position;
+    detailInfo.innerText=randomIndex.detail;} 
 
 
 
  randombtn.addEventListener('click',randomImg)
 
- //🤔버튼을 누를때 마다  id값이 증가 감소하도록하게해서 바꿔주도록 진행을 해볼까?
+ //🤔버튼을 누를때 마다  인덱스값이 증가 감소하도록하게해서 바꿔주도록 진행을 해볼까?
 
 
+function showImg(newImg){
+  const currentItem= randomPlanet[newImg];
+  mainnImg.src=currentItem.img;
+  nameInfo.innerText=currentItem.name;
+  positionInfo.innerText=currentItem.position;
+  detailInfo.innerText=currentItem.detail;
 
+}
+
+
+right.addEventListener('click',()=>{newImg+=1; showImg(newImg)})
+left.addEventListener('click',()=>{newImg-=1; showImg(newImg)})
