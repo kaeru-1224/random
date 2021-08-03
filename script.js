@@ -42,11 +42,10 @@ const randomPlanet=[
     positionInfo.innerText=randomIndex.position;
     detailInfo.innerText=randomIndex.detail;
   console.log(currentImg)} 
-
+//🤔버튼을 누를때 마다  인덱스값이 증가 감소하도록하게해서 바꿔주도록 진행을 해볼까?
 
  randombtn.addEventListener('click',()=>{currentImg=Math.floor(Math.random()* randomPlanet.length); showImg(currentImg) })
  rightbtn.addEventListener('click',()=>{currentImg++; if(currentImg>randomPlanet.length){currentImg=0}showImg(currentImg) })
  leftbtn.addEventListener('click',()=>{currentImg--; if(currentImg<0){currentImg=0}showImg(currentImg) })
 
- //🤔버튼을 누를때 마다  인덱스값이 증가 감소하도록하게해서 바꿔주도록 진행을 해볼까?
-//문제? 문제가 아마 내문제겟지? 아마도 
+ 
